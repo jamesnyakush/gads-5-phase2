@@ -2,18 +2,20 @@ package com.jamesnyakush.gads.ui.fragment
 
 import android.os.Bundle
 import android.util.Log
-import androidx.fragment.app.Fragment
 import android.view.View
 import android.widget.Toast
+import androidx.fragment.app.Fragment
 import com.jamesnyakush.gads.R
 import com.jamesnyakush.gads.data.model.response.LearningResponse
-import com.jamesnyakush.gads.data.network.RetrofitBuilder
+import com.jamesnyakush.gads.data.network.ApiService
+import com.jamesnyakush.gads.utils.Constants
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
 
 class Learning : Fragment(R.layout.learning_fragment) {
+    private val herokuapp by lazy { ApiService.invoke(Constants.HEROKU_URL) }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -22,7 +24,7 @@ class Learning : Fragment(R.layout.learning_fragment) {
     }
 
     private fun fetchLearingLeaders() {
-        var call = RetrofitBuilder.apiService.getLeaders()
+        var call = herokuapp.getLeaders()
 
         call.enqueue(object : Callback<LearningResponse> {
             override fun onFailure(call: Call<LearningResponse>, t: Throwable) {

@@ -6,15 +6,14 @@ import okhttp3.OkHttpClient
 import retrofit2.Call
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
+import retrofit2.http.Field
+import retrofit2.http.FormUrlEncoded
 import retrofit2.http.GET
+import retrofit2.http.POST
 import java.util.concurrent.TimeUnit
 
 
-const val HEROKU_URL: String = "https://gadsapi.herokuapp.com/"
-const val GOOGLE_FORM_URL: String = "https://gadsapi.herokuapp.com/"
-
 interface ApiService {
-
 
     @GET("api/hours")
     fun getLeaders(): Call<LearningResponse>
@@ -22,26 +21,30 @@ interface ApiService {
     @GET("api/skilliq")
     fun getSkilliq(): Call<SkillIQResponse>
 
+    @POST("")
+    @FormUrlEncoded
+    fun submit(
+        @Field("entry.1824927963") emailAddress: String,
+        @Field("entry.1877115667") firstName: String,
+        @Field("entry.2006916086") lastName: String,
+        @Field("entry.284483984") LinkToProject: String
+    ): Call<Void>
+
     companion object {
-        // init Retrofit base server instance
 
 
-
-        val herokuapp by lazy { ApiService.invoke(HEROKU_URL) }
-        val googleform by lazy { ApiService.invoke(GOOGLE_FORM_URL) }
-
-        //private val loggingInterceptor = HttpLoggingInterceptor().apply {
-        //    this.level = HttpLoggingInterceptor.Level.BODY
-        //}
+//        private val loggingInterceptor = HttpLoggingInterceptor().apply {
+//            this.level = HttpLoggingInterceptor.Level.BODY
+//        }
 
         operator fun invoke(baseUrl: String): ApiService {
-            //val client = OkHttpClient.Builder().apply {
-            //    /**addNetworkInterceptor(StethoInterceptor()) */
-            //    addNetworkInterceptor(loggingInterceptor)
-            //    connectTimeout(10, TimeUnit.MINUTES)
-            //    readTimeout(10, TimeUnit.MINUTES)
-            //    writeTimeout(10, TimeUnit.MINUTES)
-            // }.build()
+//            val client = OkHttpClient.Builder().apply {
+//                /**addNetworkInterceptor(StethoInterceptor()) */
+//                addNetworkInterceptor(loggingInterceptor)
+//                connectTimeout(10, TimeUnit.MINUTES)
+//                readTimeout(10, TimeUnit.MINUTES)
+//                writeTimeout(10, TimeUnit.MINUTES)
+//             }.build()
 
             return Retrofit.Builder()
                 //.client(client)
