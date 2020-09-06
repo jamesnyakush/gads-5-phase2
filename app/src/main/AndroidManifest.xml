@@ -13,9 +13,9 @@
         android:theme="@style/AppTheme">
 
         <activity android:name=".ui.activity.Submit" />
-        <activity android:name=".ui.activity.MainActivity" />
+        <activity android:name=".ui.activity.Leaderboard" />
 
-        <activity android:name=".ui.activity.Leaderboard">
+        <activity android:name=".ui.activity.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

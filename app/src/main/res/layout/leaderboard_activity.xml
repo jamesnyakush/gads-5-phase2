@@ -7,6 +7,23 @@
     android:background="#ededed"
     android:orientation="vertical"
     tools:context=".ui.activity.Leaderboard">
+    
+<!--    <com.google.android.material.appbar.AppBarLayout-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:background="@color/colorPrimary"-->
+<!--        android:fitsSystemWindows="true"-->
+<!--        app:liftOnScroll="true">-->
+
+<!--        <include-->
+<!--            android:id="@+id/include"-->
+<!--            layout="@layout/toolbar" />-->
+
+<!--    </com.google.android.material.appbar.AppBarLayout>-->
+
+
+<!--    <include layout="@layout/content_main" />-->
+
 
     <com.google.android.material.tabs.TabLayout
         android:id="@+id/tabs"
@@ -20,9 +37,11 @@
         app:tabSelectedTextColor="@color/colorAccent"
         app:tabTextColor="@color/colorAccent" />
 
+
     <androidx.viewpager.widget.ViewPager
         android:id="@+id/pager"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
+
 
 </LinearLayout>
