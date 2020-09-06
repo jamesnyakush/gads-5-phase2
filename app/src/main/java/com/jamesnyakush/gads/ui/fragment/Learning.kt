@@ -5,10 +5,13 @@ import android.util.Log
 import android.view.View
 import android.widget.Toast
 import androidx.fragment.app.Fragment
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.jamesnyakush.gads.R
 import com.jamesnyakush.gads.data.model.response.LearningResponse
 import com.jamesnyakush.gads.data.network.ApiService
+import com.jamesnyakush.gads.ui.adapter.LearningAdapter
 import com.jamesnyakush.gads.utils.Constants
+import kotlinx.android.synthetic.main.learning_fragment.*
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -26,6 +29,7 @@ class Learning : Fragment(R.layout.learning_fragment) {
     private fun fetchLearingLeaders() {
         var call = herokuapp.getLeaders()
 
+
         call.enqueue(object : Callback<LearningResponse> {
             override fun onFailure(call: Call<LearningResponse>, t: Throwable) {
                 Log.d("Learning", t.message.toString())
@@ -36,17 +40,13 @@ class Learning : Fragment(R.layout.learning_fragment) {
                 response: Response<LearningResponse>
             ) {
                 if (response.isSuccessful) {
-                    Toast.makeText(
-                        requireContext(),
-                        response.body().toString(),
-                        Toast.LENGTH_LONG
-                    ).show()
+                    recycler_learning.apply {
+                        layoutManager = LinearLayoutManager(requireContext())
+                        hasFixedSize()
+                        adapter = LearningAdapter(response.body()!!)
+                    }
                 } else {
-                    Toast.makeText(
-                        requireContext(),
-                        response.errorBody().toString(),
-                        Toast.LENGTH_LONG
-                    ).show()
+                    Log.d("Learning", response.errorBody().toString())
                 }
             }
 
