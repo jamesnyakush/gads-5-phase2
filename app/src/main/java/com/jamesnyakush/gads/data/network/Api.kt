@@ -1,7 +1,7 @@
 package com.jamesnyakush.gads.data.network
 
-import com.jamesnyakush.gads.data.model.Learning
-import com.jamesnyakush.gads.data.model.SkillIQ
+import com.jamesnyakush.gads.data.model.response.SkillIQResponse
+import com.jamesnyakush.gads.data.model.response.LearningResponse
 import retrofit2.Call
 import retrofit2.http.Field
 import retrofit2.http.FormUrlEncoded
@@ -11,10 +11,10 @@ import retrofit2.http.POST
 interface Api {
 
     @GET("api/hours")
-    fun getLeaders(): Call<Learning>
+    fun getLeaders(): Call<LearningResponse>
 
     @GET("api/skilliq")
-    fun getSkilliq(): Call<SkillIQ>
+    fun getSkilliq(): Call<SkillIQResponse>
 
     @POST("")
     @FormUrlEncoded
