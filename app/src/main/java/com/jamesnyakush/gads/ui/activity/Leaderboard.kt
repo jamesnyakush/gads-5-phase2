@@ -23,6 +23,7 @@ class Leaderboard : AppCompatActivity() {
         val adapter = ViewPagerAdapter(
             supportFragmentManager
         )
+
         adapter.addFragment(Learning(), "Learning Leaders")
         adapter.addFragment(SkillIQ(), "Skill IQ Leaders")
 
